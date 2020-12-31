@@ -754,7 +754,7 @@
                                         </textFieldCell>
                                     </textField>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8NC-68-A2u">
-                                        <rect key="frame" x="-2" y="52" width="804" height="43"/>
+                                        <rect key="frame" x="-2" y="51" width="804" height="43"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Created by Barak Harari" id="dU3-VS-Lrr">
                                             <font key="font" size="43" name="EastSeaDokdo-Regular"/>
                                             <color key="textColor" red="1" green="0.84313725490000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -762,9 +762,9 @@
                                         </textFieldCell>
                                     </textField>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="f7j-eI-HYa">
-                                        <rect key="frame" x="270" y="20" width="260" height="24"/>
+                                        <rect key="frame" x="-2" y="21" width="804" height="22"/>
                                         <textFieldCell key="cell" alignment="center" title="Assets designed by Krishna Palacio" id="yly-7B-PL1">
-                                            <font key="font" size="24" name="EastSeaDokdo-Regular"/>
+                                            <font key="font" size="22" name="EastSeaDokdo-Regular"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
@@ -784,22 +784,22 @@
                                     <constraint firstAttribute="trailing" secondItem="mkl-FJ-Bvh" secondAttribute="trailing" id="Ffo-mb-98B"/>
                                     <constraint firstItem="OXX-Ee-SWs" firstAttribute="leading" secondItem="z7l-Ud-fVe" secondAttribute="leading" id="GnB-Cf-Hs0"/>
                                     <constraint firstItem="OXX-Ee-SWs" firstAttribute="leading" secondItem="z7l-Ud-fVe" secondAttribute="leading" id="IL9-4q-mlo"/>
-                                    <constraint firstItem="f7j-eI-HYa" firstAttribute="leading" secondItem="z7l-Ud-fVe" secondAttribute="leading" constant="272" id="Icb-1g-a14"/>
-                                    <constraint firstItem="f7j-eI-HYa" firstAttribute="top" secondItem="8NC-68-A2u" secondAttribute="bottom" constant="8" id="Ln5-nu-4zY"/>
+                                    <constraint firstAttribute="trailing" secondItem="f7j-eI-HYa" secondAttribute="trailing" id="Ofh-aX-nRz"/>
                                     <constraint firstAttribute="trailing" secondItem="yFi-fD-kSE" secondAttribute="trailing" id="RIX-1I-y6Y"/>
+                                    <constraint firstItem="f7j-eI-HYa" firstAttribute="top" secondItem="8NC-68-A2u" secondAttribute="bottom" constant="8" id="SRI-KV-r3j"/>
+                                    <constraint firstItem="8NC-68-A2u" firstAttribute="leading" secondItem="z7l-Ud-fVe" secondAttribute="leading" id="Vv1-h8-TE9"/>
                                     <constraint firstItem="yFi-fD-kSE" firstAttribute="leading" secondItem="z7l-Ud-fVe" secondAttribute="leading" id="WiI-c4-Q4R"/>
-                                    <constraint firstItem="8NC-68-A2u" firstAttribute="leading" secondItem="z7l-Ud-fVe" secondAttribute="leading" id="XD5-in-n7L"/>
                                     <constraint firstItem="5aJ-al-wwQ" firstAttribute="centerX" secondItem="z7l-Ud-fVe" secondAttribute="centerX" id="YZs-ix-twA"/>
                                     <constraint firstAttribute="trailing" secondItem="OXX-Ee-SWs" secondAttribute="trailing" id="Yb4-7R-0Pl"/>
                                     <constraint firstItem="mkl-FJ-Bvh" firstAttribute="top" secondItem="yFi-fD-kSE" secondAttribute="bottom" constant="60" id="cuT-fV-675"/>
                                     <constraint firstItem="OXX-Ee-SWs" firstAttribute="top" secondItem="5aJ-al-wwQ" secondAttribute="bottom" constant="14" id="eoH-kK-Oib"/>
-                                    <constraint firstAttribute="bottom" secondItem="f7j-eI-HYa" secondAttribute="bottom" constant="20" symbolic="YES" id="fQE-Kx-nW8"/>
                                     <constraint firstItem="yFi-fD-kSE" firstAttribute="top" secondItem="OXX-Ee-SWs" secondAttribute="bottom" id="fzD-pw-mMu"/>
                                     <constraint firstItem="5aJ-al-wwQ" firstAttribute="top" secondItem="z7l-Ud-fVe" secondAttribute="top" constant="49" id="gDb-sY-7Tp"/>
-                                    <constraint firstAttribute="trailing" secondItem="f7j-eI-HYa" secondAttribute="trailing" constant="272" id="lSE-PH-dY9"/>
-                                    <constraint firstAttribute="trailing" secondItem="8NC-68-A2u" secondAttribute="trailing" id="os8-8G-wUh"/>
+                                    <constraint firstItem="8NC-68-A2u" firstAttribute="top" secondItem="mkl-FJ-Bvh" secondAttribute="bottom" constant="40" id="kgd-X4-mfr"/>
+                                    <constraint firstAttribute="trailing" secondItem="8NC-68-A2u" secondAttribute="trailing" id="mu3-EY-V8s"/>
                                     <constraint firstItem="S5S-fL-vjZ" firstAttribute="top" secondItem="yFi-fD-kSE" secondAttribute="bottom" constant="42" id="vE0-PI-pHZ"/>
                                     <constraint firstItem="mkl-FJ-Bvh" firstAttribute="leading" secondItem="z7l-Ud-fVe" secondAttribute="leading" id="xQ8-U3-ZKQ"/>
+                                    <constraint firstItem="f7j-eI-HYa" firstAttribute="leading" secondItem="z7l-Ud-fVe" secondAttribute="leading" id="xme-sV-Pg0"/>
                                 </constraints>
                             </customView>
                         </subviews>
