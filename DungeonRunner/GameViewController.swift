@@ -19,15 +19,15 @@ class GameViewController: NSViewController {
         return view
     }()
     
-    func jump(sender: NSButton){
+    func jump(completion: @escaping(()->())){
         if let scene = gameView.scene as? GameScene{
-            scene.internalJump(sender: sender)
+            scene.internalJump(completion: completion)
         }
     }
     
-    func crouch(sender: NSButton){
+    func crouch(completion: @escaping ()->()){
         if let scene = gameView.scene as? GameScene{
-            scene.internalCrouch(sender: sender)
+            scene.internalCrouch(completion: completion)
         }
     }
     
@@ -35,6 +35,13 @@ class GameViewController: NSViewController {
         if let scene = gameView.scene as? GameScene{
             scene.resetGame()
         }
+    }
+    
+    func gameOverCheck() -> Bool{
+        if let scene = gameView.scene as? GameScene{
+            return scene.endGame
+        }
+        return true
     }
     
     override func viewDidLoad() {
@@ -55,6 +62,7 @@ class GameViewController: NSViewController {
             let scene = SKScene(fileNamed: "GameScene") as? GameScene
             scene!.scaleMode = .aspectFill
             scene!.parentVC = self
+            scene!.isUserInteractionEnabled = true
             gameView.presentScene(scene)
         }
     }

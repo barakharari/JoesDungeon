@@ -19,10 +19,11 @@
 		6127FEA4259BF98300FA5401 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6127FEA3259BF98300FA5401 /* Assets.xcassets */; };
 		6127FEA7259BF98300FA5401 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6127FEA5259BF98300FA5401 /* Main.storyboard */; };
 		6127FEB2259BFAEB00FA5401 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6127FEB1259BFAEB00FA5401 /* GameViewController.swift */; };
+		6195A596259E2CF400348D56 /* applause.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6195A595259E2CF400348D56 /* applause.mp3 */; };
+		6195A5C1259E7A7E00348D56 /* lose.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6195A5C0259E7A7E00348D56 /* lose.mp3 */; };
 		61AECA70259D1569000D54C5 /* Obstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61AECA6F259D1569000D54C5 /* Obstacle.swift */; };
 		61AECA74259D3ED5000D54C5 /* Orc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61AECA73259D3ED5000D54C5 /* Orc.swift */; };
 		61AECA78259DA2BE000D54C5 /* music.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 61AECA76259DA09A000D54C5 /* music.m4a */; };
-		61AECA7B259DA423000D54C5 /* lose.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 61AECA7A259DA423000D54C5 /* lose.mp3 */; };
 		61AECA80259DA61C000D54C5 /* jump.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 61AECA7F259DA61C000D54C5 /* jump.mp3 */; };
 		61AECA83259DA69D000D54C5 /* win.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 61AECA82259DA69D000D54C5 /* win.mp3 */; };
 		61AECA86259DA709000D54C5 /* crouch.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 61AECA85259DA709000D54C5 /* crouch.mp3 */; };
@@ -45,10 +46,11 @@
 		6127FEA9259BF98300FA5401 /* DungeonRunner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DungeonRunner.entitlements; sourceTree = "<group>"; };
 		6127FEB1259BFAEB00FA5401 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		6127FED1259D087400FA5401 /* EastSeaDokdo-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "EastSeaDokdo-Regular.ttf"; sourceTree = "<group>"; };
+		6195A595259E2CF400348D56 /* applause.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = applause.mp3; sourceTree = "<group>"; };
+		6195A5C0259E7A7E00348D56 /* lose.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = lose.mp3; sourceTree = "<group>"; };
 		61AECA6F259D1569000D54C5 /* Obstacle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Obstacle.swift; sourceTree = "<group>"; };
 		61AECA73259D3ED5000D54C5 /* Orc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Orc.swift; sourceTree = "<group>"; };
 		61AECA76259DA09A000D54C5 /* music.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = music.m4a; sourceTree = "<group>"; };
-		61AECA7A259DA423000D54C5 /* lose.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = lose.mp3; sourceTree = "<group>"; };
 		61AECA7F259DA61C000D54C5 /* jump.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = jump.mp3; sourceTree = "<group>"; };
 		61AECA82259DA69D000D54C5 /* win.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = win.mp3; sourceTree = "<group>"; };
 		61AECA85259DA709000D54C5 /* crouch.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = crouch.mp3; sourceTree = "<group>"; };
@@ -106,7 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				61AECA7D259DA42D000D54C5 /* Sounds */,
-				6127FED1259D087400FA5401 /* EastSeaDokdo-Regular.ttf */,
+				6195A5BD259E3FCE00348D56 /* Fonts */,
 				6127FE99259BF98200FA5401 /* AppDelegate.swift */,
 				6127FEA1259BF98200FA5401 /* ViewController.swift */,
 				6127FEB1259BFAEB00FA5401 /* GameViewController.swift */,
@@ -122,14 +124,23 @@
 			path = DungeonRunner;
 			sourceTree = "<group>";
 		};
+		6195A5BD259E3FCE00348D56 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				6127FED1259D087400FA5401 /* EastSeaDokdo-Regular.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		61AECA7D259DA42D000D54C5 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
 				61AECA76259DA09A000D54C5 /* music.m4a */,
-				61AECA7A259DA423000D54C5 /* lose.mp3 */,
+				6195A5C0259E7A7E00348D56 /* lose.mp3 */,
 				61AECA7F259DA61C000D54C5 /* jump.mp3 */,
 				61AECA82259DA69D000D54C5 /* win.mp3 */,
 				61AECA89259DA959000D54C5 /* woohoo.m4a */,
+				6195A595259E2CF400348D56 /* applause.mp3 */,
 				61AECA85259DA709000D54C5 /* crouch.mp3 */,
 			);
 			path = Sounds;
@@ -194,14 +205,15 @@
 			files = (
 				61AECA83259DA69D000D54C5 /* win.mp3 in Resources */,
 				611D0F9F259D08DE00BD3978 /* EastSeaDokdo-Regular.ttf in Resources */,
-				61AECA7B259DA423000D54C5 /* lose.mp3 in Resources */,
 				6127FE9C259BF98200FA5401 /* GameScene.sks in Resources */,
 				61AECA80259DA61C000D54C5 /* jump.mp3 in Resources */,
 				61AECA86259DA709000D54C5 /* crouch.mp3 in Resources */,
 				6127FEA4259BF98300FA5401 /* Assets.xcassets in Resources */,
 				61AECA78259DA2BE000D54C5 /* music.m4a in Resources */,
+				6195A596259E2CF400348D56 /* applause.mp3 in Resources */,
 				6127FEA7259BF98300FA5401 /* Main.storyboard in Resources */,
 				61AECA8B259DAA10000D54C5 /* woohoo.m4a in Resources */,
+				6195A5C1259E7A7E00348D56 /* lose.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

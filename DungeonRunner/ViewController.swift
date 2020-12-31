@@ -10,50 +10,80 @@ import SpriteKit
 import GameplayKit
 import AVFoundation
 
-class ViewController: NSViewController, NSTouchBarDelegate {
+class ViewController: NSViewController {
 
-    @IBOutlet var skView: SKView!
+    @IBOutlet var skView: NSView!
+    
     @IBOutlet weak var backgroundView: NSView!
     @IBOutlet weak var scoreTextField: NSTextField!
     @IBOutlet weak var highScoreTextField: NSTextField!
     @IBOutlet weak var replayButton: NSButton!
+    @IBOutlet weak var instructionsTextField: NSTextField!
     
     var upButton:NSButton!
     var downButton:NSButton!
+    var pressDisabled:Bool = false
     
     var mainSoundPlayer = AVAudioPlayer()
-    
-    @IBAction func pressReplayButton(_ sender: NSButton) {
-        if let gameVC = gameViewController{
-            gameVC.resetGame()
-        }
-        downButton.isEnabled = true
-        upButton.isEnabled = true
-        replayButton.isHidden = true
-    }
-    
     var gameViewController:GameViewController?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         designSubViews()
-        
         replayButton.isHidden = true
-        
-        playSound(path: Bundle.main.path(forResource: "music", ofType: "m4a")!)
+        playSound(path: Bundle.main.path(forResource: "music", ofType: "m4a")!, numberOfLoops: 20)
     }
     
-    func playSound(path: String){
+    @IBAction func pressReplayButton(_ sender: NSButton) {
+        
+        if let gameVC = gameViewController{
+            mainSoundPlayer.stop()
+            gameVC.resetGame()
+        }
+        
+        downButton.isEnabled = true
+        upButton.isEnabled = true
+        replayButton.isHidden = true
+        pressDisabled = false
+    
+    }
+    
+    override func viewDidAppear() {
+        view.window?.makeFirstResponder(self)
+    }
+    
+    override func keyDown(with event: NSEvent) {
+                
+        if (event.keyCode == 126){
+            instructionsTextField.isHidden = true
+            if (!pressDisabled){
+                self.pressDisabled = true
+                gameViewController?.jump(completion: { [unowned self] in pressDisabled = false})
+            }
+        } else if (event.keyCode == 125){
+            instructionsTextField.isHidden = true
+            if (!pressDisabled){
+                self.pressDisabled = true
+                gameViewController?.crouch(completion: { [unowned self] in pressDisabled = false})
+            }
+        }
+    
+
+    }
+
+    func playSound(path: String, numberOfLoops: Int){
         do{
             mainSoundPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: path))
             mainSoundPlayer.play()
+            mainSoundPlayer.numberOfLoops = numberOfLoops
         } catch{
             print(error)
         }
     }
     
     func designSubViews(){
+        
         backgroundView.wantsLayer = true
         backgroundView.layer?.backgroundColor = backgroundBlue
         
@@ -66,12 +96,56 @@ class ViewController: NSViewController, NSTouchBarDelegate {
             highScoreTextField.stringValue = "Highscore: \(UserDefaults.standard.value(forKey: "highscore") as! Int)"
         }
         
+        DispatchQueue.global(qos: .background).async {
+            var hidden = false
+            while (!hidden){
+                DispatchQueue.main.async {
+                    hidden = self.instructionsTextField.isHidden
+                    NSAnimationContext.runAnimationGroup { context in
+                        context.duration = 2
+                        self.instructionsTextField.animator().alphaValue = 0
+                    } completionHandler: {
+                        self.instructionsTextField.animator().alphaValue = 1
+                    }
+                }
+                sleep(1)
+            }
+        }
+ 
+
+
         
     }
+    
+    @objc func jump(sender: NSButton){
+        instructionsTextField.isHidden = true
+        if let vc = gameViewController{
+            sender.isEnabled = false
+            vc.jump(completion: {sender.isEnabled = true})
+        }
+    }
+    
+    @objc func crouch(sender: NSButton){
+        instructionsTextField.isHidden = true
+        if let vc = gameViewController{
+            sender.isEnabled = false
+            vc.crouch(completion: {sender.isEnabled = true})
+        }
+    }
+}
+
+extension NSTouchBarItem.Identifier {
+    static let touchBarVC =  NSTouchBarItem.Identifier("com.spriteKit.touchBar")
+    static let upButton = NSTouchBarItem.Identifier("com.spriteKit.upButton")
+    static let downButton = NSTouchBarItem.Identifier("com.spriteKit.downButton")
+}
+
+extension ViewController: NSTouchBarDelegate{
     
     override func makeTouchBar() -> NSTouchBar? {
         let bar = NSTouchBar()
         bar.delegate = self
+        bar.customizationIdentifier = "com.spriteKit.barIdentifier"
         bar.defaultItemIdentifiers = [.upButton, .downButton, .touchBarVC, .fixedSpaceSmall]
         return bar
     }
@@ -94,33 +168,12 @@ class ViewController: NSViewController, NSTouchBarDelegate {
         case NSTouchBarItem.Identifier.downButton:
             let item = NSCustomTouchBarItem(identifier: .downButton)
             downButton = NSButton(image: NSImage(systemSymbolName: "arrowtriangle.down.fill", accessibilityDescription: nil)!, target: self, action: #selector(crouch))
-            downButton.isEnabled = false
             item.view = downButton
             return item
         default: return nil
         }
     }
     
-    @objc func jump(sender: NSButton){
-        downButton.isEnabled = true
-        if let vc = gameViewController{
-            sender.isEnabled = false
-            vc.jump(sender: sender)
-        }
-    }
-    
-    @objc func crouch(sender: NSButton){
-        if let vc = gameViewController{
-            sender.isEnabled = false
-            vc.crouch(sender: sender)
-        }
-    }
-}
-
-extension NSTouchBarItem.Identifier {
-    static let touchBarVC =  NSTouchBarItem.Identifier("com.spriteKit.touchBar")
-    static let upButton = NSTouchBarItem.Identifier("com.spriteKit.upButton")
-    static let downButton = NSTouchBarItem.Identifier("com.spriteKit.downButton")
 }
 
 
