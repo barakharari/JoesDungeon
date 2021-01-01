@@ -39,8 +39,9 @@ class GameScene: SKScene {
     var effectPlayer = AVAudioPlayer()
     var endGame:Bool = false
     var startedGame:Bool = false
-    var backGroundSpeed = 6
-    var obstacleSpeed = 7
+    var movementSpeed:Double = 8
+    var waitTimeRange:ClosedRange<Double>!
+    
     var internalScore = 0 {
         didSet{
             if let vc = parentVC.parentVC{
@@ -107,6 +108,8 @@ class GameScene: SKScene {
         
         //New game
         endGame = false
+        self.movementSpeed = 8
+        self.waitTimeRange = 1.5...2.0
         
         //Make sure no effects are playing
         effectPlayer.stop()
@@ -124,38 +127,46 @@ class GameScene: SKScene {
         //Start walking animation
         joe.startWalking()
         
+        //Background start moving
+        let backgroundMove = SKAction.moveTo(x: -(backgroundNode.frame.width/2), duration: 5)
+        let resetBackground = SKAction.moveTo(x: 0, duration: 0)
+        worldNode.run(SKAction.repeatForever(SKAction.sequence([backgroundMove,resetBackground])))
+        
         //Start moving things
-        sceneMoveAnimation()
+        spawnAndMoveObstaclesAndOrcs()
 
     }
-    
-    func sceneMoveAnimation(){
-        
-        //Background animation
-        let timeToMove = TimeInterval(backGroundSpeed)
-        let backgroundMove = SKAction.moveTo(x: -(backgroundNode.frame.width/2), duration: timeToMove)
-        let resetBackground = SKAction.moveTo(x: 0, duration: 0)
-        
-        //Move world
-        worldNode.run(SKAction.repeatForever(SKAction.sequence([backgroundMove,resetBackground])))
-        worldNode.run(SKAction.repeatForever(SKAction.sequence([SKAction.run(self.spawnAndMoveObstaclesAndOrcs), SKAction.wait(forDuration: 1.5)])), withKey: AnimationKeys.obstacleKey)
-        
-    }
-    
+
     func spawnAndMoveObstaclesAndOrcs(){
+        
+        guard (!endGame) else {return}
+
+        if (self.movementSpeed > 3) {self.movementSpeed -= 0.03}
+        
+        if (self.waitTimeRange.lowerBound > 0.5){
+            
+            let lowerBound = waitTimeRange.lowerBound - 0.01
+            let upperBound = waitTimeRange.upperBound - 0.01
+            
+            waitTimeRange = lowerBound...upperBound
+        }
+        
+        let waitTime = Double.random(in: waitTimeRange)
         
         switch Int.random(in: 0...1){
         case 0:
-            let obstacle:Obstacle = Obstacle(texture: SKTexture(imageNamed: "obstacle1"), color: .white, size: CGSize(width: 10, height: 10), obstacleSpeed: obstacleSpeed)
+            let obstacle:Obstacle = Obstacle(texture: SKTexture(imageNamed: "obstacle1"), color: .white, size: CGSize(width: 10, height: 10), obstacleSpeed: self.movementSpeed / 2)
             obstacle.zPosition = floorNode.zPosition + 1
+            obstacle.waitTime = waitTime
             addChild(obstacle)
-            obstacle.moveObstacle(viewSize:view!.frame.size)
+            obstacle.moveObstacle(viewSize:view!.frame.size, getNextObject: spawnAndMoveObstaclesAndOrcs)
             break
         case 1:
-            let orc:Orc = Orc(texture: SKTexture(imageNamed: "orc1"), color: .white, size: CGSize(width: 13, height: 13), orcSpeed: obstacleSpeed)
+            let orc:Orc = Orc(texture: SKTexture(imageNamed: "orc1"), color: .white, size: CGSize(width: 13, height: 13), orcSpeed: self.movementSpeed / 2)
             orc.zPosition = floorNode.zPosition + 1
+            orc.waitTime = waitTime
             addChild(orc)
-            orc.moveOrc(viewSize:view!.frame.size)
+            orc.moveOrc(viewSize:view!.frame.size, getNextObject: spawnAndMoveObstaclesAndOrcs)
             break
         default:
             break

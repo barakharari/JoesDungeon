@@ -88,7 +88,8 @@ class ViewController: NSViewController {
         backgroundView.layer?.backgroundColor = backgroundBlue
         
         // Insert code here to initialize your application
-        let highScore = UserDefaults.standard.value(forKey: "highscore") as? Int
+        let highScore = UserDefaults.standard.value(forKey: "highscore") as?
+            Int
         if (highScore == nil){
             UserDefaults.standard.setValue(0, forKey: "highscore")
             highScoreTextField.stringValue = "Highscore: 0"

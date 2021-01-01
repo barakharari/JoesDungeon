@@ -12,9 +12,10 @@ class Orc: SKSpriteNode {
     
     private var orcFrames: [SKTexture] = []
     
-    var orcSpeed: Int!
+    var orcSpeed: Double!
+    var waitTime: Double!
     
-    init(texture: SKTexture, color: NSColor, size: CGSize, orcSpeed: Int) {
+    init(texture: SKTexture, color: NSColor, size: CGSize, orcSpeed: Double) {
         
         super.init(texture: texture, color: color, size: size)
         
@@ -36,16 +37,22 @@ class Orc: SKSpriteNode {
     }
     
     
-    func moveOrc(viewSize: CGSize){
+    func moveOrc(viewSize: CGSize, getNextObject: @escaping()->()){
         
-        let startX = (viewSize.width / 2) + (CGFloat.random(in: 0...30))
+        let startX = (viewSize.width / 2) + 20
         let startPosition = CGPoint(x: startX, y: 6)
-        let endPosition = CGPoint(x: -viewSize.width, y: 6)
+        let endPosition = CGPoint(x: -viewSize.width/2, y: 6)
         
         position = startPosition
-        speed = CGFloat(viewSize.width/(startX + 349))
         
-        run(SKAction.sequence([SKAction.move(to: endPosition, duration: TimeInterval(orcSpeed)), SKAction.removeFromParent()]))
+        run(SKAction.wait(forDuration: waitTime)) {
+            
+            [unowned self] in
+            
+            self.run(SKAction.sequence([SKAction.move(to: endPosition, duration: TimeInterval(orcSpeed)), SKAction.removeFromParent()]))
+            getNextObject()
+            
+        }
     }
     
 }

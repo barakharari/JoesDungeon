@@ -38,9 +38,9 @@ class Joe: SKSpriteNode {
     
     func jump(completion: @escaping(()->())){
         
-        let jumpUpAction = SKAction.moveBy(x: 0, y: 12, duration: 0.1)
-        let stayAction = SKAction.moveBy(x: 0, y: 0, duration: 0.25)
-        let jumpDownAction = SKAction.moveBy(x: 0, y: -12, duration: 0.1)
+        let jumpUpAction = SKAction.moveBy(x: 0, y: 12, duration: 0.12)
+        let stayAction = SKAction.moveBy(x: 0, y: 0, duration: 0.23)
+        let jumpDownAction = SKAction.moveBy(x: 0, y: -12, duration: 0.12)
         let jumpSequence = SKAction.sequence([jumpUpAction, stayAction, jumpDownAction])
 
         let animate = SKAction.animate(with: joeJumpingFrames, timePerFrame: 0.3)
@@ -58,7 +58,7 @@ class Joe: SKSpriteNode {
     
     func crouch(completion: @escaping(()->())){
         
-        let animate = SKAction.animate(with: joeCrouchingFrames, timePerFrame: 0.08)
+        let animate = SKAction.animate(with: joeCrouchingFrames, timePerFrame: 0.07)
         
         configurePhysics(area: CGSize(width: size.width, height: 2))
         
