@@ -42,13 +42,16 @@ class Joe: SKSpriteNode {
     //Jump animation sequence, on completion walking animation will be reenabled and buttons will be active
     func jump(completion: @escaping(()->())){
         
+        let upDownSpeed = 0.12
+        let staySpeed = 0.24
+        
         //Position sequence
-        let jumpUpAction = SKAction.moveBy(x: 0, y: 12, duration: 0.12)
-        let stayAction = SKAction.moveBy(x: 0, y: 0, duration: 0.23)
-        let jumpDownAction = SKAction.moveBy(x: 0, y: -12, duration: 0.12)
+        let jumpUpAction = SKAction.moveBy(x: 0, y: 12, duration: upDownSpeed)
+        let stayAction = SKAction.moveBy(x: 0, y: 0, duration: staySpeed)
+        let jumpDownAction = SKAction.moveBy(x: 0, y: -12, duration: upDownSpeed)
         let jumpSequence = SKAction.sequence([jumpUpAction, stayAction, jumpDownAction])
 
-        let animate = SKAction.animate(with: joeJumpingFrames, timePerFrame: 0.3)
+        let animate = SKAction.animate(with: joeJumpingFrames, timePerFrame: (staySpeed + 2*upDownSpeed) / Double(joeJumpingFrames.count))
         
         //Set height to be less
         configurePhysics(area: CGSize(width: size.width, height: size.height - 2))
