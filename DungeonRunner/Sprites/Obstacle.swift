@@ -10,9 +10,7 @@ import SpriteKit
 
 class Obstacle: SKSpriteNode {
     
-    private let obstacleTexture1 = SKTexture(imageNamed: "obstacle1")
-    private let obstacleTexture2 = SKTexture(imageNamed: "obstacle2")
-    
+    //Object speed and time to wait before moving
     var obstacleSpeed: Double!
     var waitTime: Double!
     
@@ -30,31 +28,28 @@ class Obstacle: SKSpriteNode {
     
     func moveObstacle(viewSize: CGSize, getNextObject: @escaping()->()){
         
-//        let startX = (viewSize.width / 2) + (CGFloat.random(in: 0...30))
-        let startX = (viewSize.width / 2) + 20
-        let startPosition = CGPoint(x: startX, y: -7.5)
+        //Get start and endPoints
+        let startPosition = CGPoint(x: (viewSize.width / 2) + 20, y: -7.5)
         let endPosition = CGPoint(x: -viewSize.width / 2, y: -7.5)
         
+        //Set object position to start position
         position = startPosition
-//        speed = CGFloat(viewSize.width/(startX + 349))
 
+        //Randomly choose texture for object
         switch Int.random(in: 0...1){
         case 0:
-            texture = obstacleTexture1
+            texture = SKTexture(imageNamed: "obstacle1")
         case 1:
-            texture = obstacleTexture2
+            texture = SKTexture(imageNamed: "obstacle2")
         default:
             break
             
         }
         
-        run(SKAction.wait(forDuration: waitTime)) {
-            
-            [unowned self] in
-            
+        //Run movement, select new object
+        run(SKAction.wait(forDuration: waitTime)) { [unowned self] in
             self.run(SKAction.sequence([SKAction.move(to: endPosition, duration: TimeInterval(obstacleSpeed)), SKAction.removeFromParent()]))
             getNextObject()
-            
         }
     }
     

@@ -35,7 +35,7 @@
 		611D0FA6259D112A00BD3978 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		611D0FA9259D113200BD3978 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		611D0FAD259D114600BD3978 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		6127FE96259BF98200FA5401 /* DungeonRunner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DungeonRunner.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6127FE96259BF98200FA5401 /* Joes Dungeon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Joes Dungeon.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6127FE99259BF98200FA5401 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6127FE9B259BF98200FA5401 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		6127FE9F259BF98200FA5401 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -99,7 +99,7 @@
 		6127FE97259BF98200FA5401 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6127FE96259BF98200FA5401 /* DungeonRunner.app */,
+				6127FE96259BF98200FA5401 /* Joes Dungeon.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -163,7 +163,7 @@
 			);
 			name = DungeonRunner;
 			productName = DungeonRunner;
-			productReference = 6127FE96259BF98200FA5401 /* DungeonRunner.app */;
+			productReference = 6127FE96259BF98200FA5401 /* Joes Dungeon.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -381,8 +381,8 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.BarakHarari.DungeonRunner;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.BarakHarari.JoesDungeon;
+				PRODUCT_NAME = "Joes Dungeon";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -402,8 +402,8 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.BarakHarari.DungeonRunner;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.BarakHarari.JoesDungeon;
+				PRODUCT_NAME = "Joes Dungeon";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;

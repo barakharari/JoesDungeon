@@ -8,8 +8,10 @@
 import Cocoa
 import SpriteKit
 
+//Very similair to obstacle class
 class Orc: SKSpriteNode {
     
+    //Orc animation frames
     private var orcFrames: [SKTexture] = []
     
     var orcSpeed: Double!
@@ -30,12 +32,12 @@ class Orc: SKSpriteNode {
         super.init(coder: aDecoder)
     }
     
+    //Orc animation
     func startSwinging(){
         let animate = SKAction.animate(with: orcFrames, timePerFrame: 0.2)
         let forever = SKAction.repeatForever(SKAction.sequence([animate, SKAction.wait(forDuration: 1)]))
         run(forever, withKey: AnimationKeys.walkingAnimationKey)
     }
-    
     
     func moveOrc(viewSize: CGSize, getNextObject: @escaping()->()){
         
@@ -45,13 +47,9 @@ class Orc: SKSpriteNode {
         
         position = startPosition
         
-        run(SKAction.wait(forDuration: waitTime)) {
-            
-            [unowned self] in
-            
+        run(SKAction.wait(forDuration: waitTime)) { [unowned self] in
             self.run(SKAction.sequence([SKAction.move(to: endPosition, duration: TimeInterval(orcSpeed)), SKAction.removeFromParent()]))
             getNextObject()
-            
         }
     }
     
